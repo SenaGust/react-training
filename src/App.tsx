@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Swal from 'sweetalert2';
+import showAlert from './Exercise 1/button';
 
 function App() {
   return (
@@ -22,15 +22,6 @@ function App() {
       </header>
     </div>
   );
-}
-
-function showAlert() {
-  Swal.fire({
-    title: 'Success',
-    text: 'You have been alerted!',
-    icon: 'success',
-    confirmButtonText: 'Cool'
-  });
 }
 
 export default App;
