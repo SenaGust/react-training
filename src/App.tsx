@@ -1,15 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Swal from 'sweetalert2';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <button onClick={() => showAlert()}>
+          Click here
+        </button>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -21,6 +22,15 @@ function App() {
       </header>
     </div>
   );
+}
+
+function showAlert() {
+  Swal.fire({
+    title: 'Success',
+    text: 'You have been alerted!',
+    icon: 'success',
+    confirmButtonText: 'Cool'
+  });
 }
 
 export default App;
