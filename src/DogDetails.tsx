@@ -8,7 +8,7 @@ interface Props{
 function DogDetailsView(props: Props) {
   return (
     <div>
-      <img  ref="image" src={props.photo} />
+      <img src={props.photo}/>
       <h1>{props.name}</h1>
       <button> Bark! </button>
     </div>
