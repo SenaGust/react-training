@@ -2,7 +2,8 @@ import React from 'react';
 
 interface Props{
   name: string,
-  photo: string
+  photo: string,
+  onBark: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 function DogDetailsView(props: Props) {
@@ -10,7 +11,7 @@ function DogDetailsView(props: Props) {
     <div>
       <img src={props.photo}/>
       <h1>{props.name}</h1>
-      <button> Bark! </button>
+      <button onClick={props.onBark}> Bark! </button>
     </div>
   );
 }
