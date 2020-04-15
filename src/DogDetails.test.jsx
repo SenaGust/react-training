@@ -7,12 +7,13 @@ describe('function DogDetailsView', () => {
         const photoParameter = 'https://img.ibxk.com.br/2019/07/16/16123213283052.jpg',
             nameParameter = 'Roberto';
         
+        // I have tried to use shallow but it returns 'undefined' when I call wrapper.props().name
         const wrapper = mount(<DogDetailsView name={nameParameter} photo={photoParameter}/>);
         
         expect(wrapper.props().name).toEqual(nameParameter);
         expect(wrapper.props().photo).toEqual(photoParameter);
     });
-    it('should receive props correctly', () => {
+    it('should use props correctly', () => {
         const photoParameter = 'https://img.ibxk.com.br/2019/07/16/16123213283052.jpg',
             nameParameter = 'Roberto';
         
