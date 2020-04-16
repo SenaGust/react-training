@@ -10,7 +10,7 @@ function DogDetailsView(props: Props) {
     <div>
       <img src={props.photo}/>
       <h1>{props.name}</h1>
-      <button> Bark! </button>
+      <button>Bark!</button>
     </div>
   );
 }
