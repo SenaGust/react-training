@@ -9,9 +9,9 @@ interface Props{
 function DogDetailsView(props: Props) {
   return (
     <div>
-      <img src={props.photo}/>
+      <img src={props.photo} alt="Here is a pomsky."/>
       <h1>{props.name}</h1>
-      <button onClick={props.onBark}> Bark! </button>
+      <button onClick={props.onBark}>Bark!</button>
     </div>
   );
 }
