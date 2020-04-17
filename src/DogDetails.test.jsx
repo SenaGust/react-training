@@ -19,7 +19,7 @@ describe('function DogDetailsView', () => {
         const photoParameter = 'https://img.ibxk.com.br/2019/07/16/16123213283052.jpg',
             nameParameter = 'Roberto',
             methodParameter = () => {
-        
+
             };
         
         const wrapper = shallow(<DogDetailsView 
@@ -38,5 +38,17 @@ describe('function DogDetailsView', () => {
         expect(button.children).toEqual('Bark!');
         expect(button.onClick).toEqual(methodParameter);
     });
+    it('onBark should called when I click on button', () => {
+        const photoParameter = 'https://img.ibxk.com.br/2019/07/16/16123213283052.jpg',
+            nameParameter = 'Roberto',
+            methodParameter = jest.fn();
+        
+        const wrapper = shallow(<DogDetailsView 
+            name={nameParameter} photo={photoParameter} 
+            onBark={methodParameter}/>);
+        
+        wrapper.find('button').simulate('click');
+
+        expect(methodParameter).toHaveBeenCalledTimes(1);
     });
 });
