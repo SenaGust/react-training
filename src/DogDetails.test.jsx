@@ -56,7 +56,7 @@ describe('function DogDetailsView', () => {
             name={nameParameter} photo={photoParameter} 
             onBark={methodParameter}/>);
         
-        wrapper.childAt(2).simulate('click');
+        wrapper.find({children: 'Bark!'}).simulate('click');
 
         expect(methodParameter).toHaveBeenCalledTimes(1);
     });
@@ -69,7 +69,7 @@ describe('function DogDetailsView', () => {
             name={nameParameter} photo={photoParameter} 
             onBark={methodParameter}/>);
 
-        wrapper.childAt(4).simulate('click');
+        wrapper.find({children: 'Scold!'}).simulate('click');
         
         const p = wrapper.find('p').get(0).props;
         expect(p.children).toEqual(['Scolding counter: ', 1]);
