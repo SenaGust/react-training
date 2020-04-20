@@ -60,4 +60,18 @@ describe('function DogDetailsView', () => {
 
         expect(methodParameter).toHaveBeenCalledTimes(1);
     });
+    it('setCount should called when I click on button Scold', () => {
+        const photoParameter = 'https://img.ibxk.com.br/2019/07/16/16123213283052.jpg',
+            nameParameter = 'Roberto',
+            methodParameter = jest.fn();
+
+        const wrapper = shallow(<DogDetailsView 
+            name={nameParameter} photo={photoParameter} 
+            onBark={methodParameter}/>);
+
+        wrapper.childAt(4).simulate('click');
+        
+        const p = wrapper.find('p').get(0).props;
+        expect(p.children).toEqual(['Scolding counter: ', 1]);
+    });
 });
