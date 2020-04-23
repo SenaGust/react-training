@@ -7,6 +7,7 @@ import CreateBeerFormTextArea from './Form/CreateBeerFormTextArea';
 function CreateBeerForm() {
     return (
         <form>
+            <h1>Beer form</h1>
             <CreateBeerFormInputText label="Beer name:" />
             <CreateBeerFormCombobox label="Beer type:" elements={['Ale', 'Lager', 'Stout']}/>
             <CreateBeerFormCheckbox label="Has corn"/>
