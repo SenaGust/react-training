@@ -11,16 +11,18 @@ function CreateBeerFormCombobox(props: Props) {
     }));
 
     return (    
-        <label>
-            {props.label}
-            <select>
-                { items.map(item => (
-                        <option key={item.value} value={item.value}>
-                            {item.label}
-                        </option>
-                    ))}
-            </select>
-        </label>
+        <div>
+            <label>
+                {props.label}
+                <select>
+                    { items.map(item => (
+                            <option key={item.value} value={item.value}>
+                                {item.label}
+                            </option>
+                        ))}
+                </select>
+            </label>
+        </div>
     );
 }
 
