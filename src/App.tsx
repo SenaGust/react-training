@@ -1,8 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import DogDetails from './DogDetails'
-import Swal from 'sweetalert2';
 import CreateBeerForm from './CreateBeerForm'
 
 function App() {
