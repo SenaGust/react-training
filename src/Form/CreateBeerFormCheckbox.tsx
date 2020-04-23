@@ -8,10 +8,12 @@ function CreateBeerForm(props: Props) {
     const [checked, setChecked] = useState(false);
     const handleClick = () => setChecked(!checked)
     return (
-        <label>
-            {props.label}     
-            <input onClick={handleClick} checked={checked} type="checkbox"/>
-        </label>
+        <div>
+            <label>
+                <input onClick={handleClick} checked={checked} type="checkbox"/>
+                {props.label}     
+            </label>
+        </div>
     );
 }
 
