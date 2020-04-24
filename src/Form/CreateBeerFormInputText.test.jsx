@@ -4,12 +4,19 @@ import React from 'react';
 
 describe('function CreateBeerFormInputText', () => {
     it('children should be properly orderly', () => {
-        const label = "name";
-        const wrapper = shallow(<CreateBeerFormInputText label={label} />);
+        const labelParameter = "name";
+        const div = shallow(<CreateBeerFormInputText label={labelParameter} />);
 
-        expect(wrapper.type()).toEqual('label');
-        expect(wrapper.props().children).toHaveLength(2);
-        expect(wrapper.props().children[0]).toEqual('name');
-        expect(wrapper.props().children[1].type).toEqual('input');
+        expect(div.type()).toEqual('div');
+
+        const label = div.childAt(0);
+        expect(label.props().children).toHaveLength(2);
+        expect(label.type()).toEqual('label');
+
+        expect(label.props().children[0]).toEqual(labelParameter);
+        expect(label.props().children[1].type).toEqual('input');
+    });
+    it('testar a funcionalidade', () => {
+
     });
 });
