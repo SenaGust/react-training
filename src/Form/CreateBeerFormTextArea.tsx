@@ -1,16 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 interface Props{
-    label: string
+    label: string,
+    value: string,
+    onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 function CreateBeerForm(props: Props) {
-    const [text, setText] = useState("");
     return (
         <div>
             <label> 
                 {props.label}
-                <textarea value={text} onChange={e => setText(e.target.value)} />
+                <textarea value={props.value} onChange={props.onChange} />
             </label>
         </div>
     );

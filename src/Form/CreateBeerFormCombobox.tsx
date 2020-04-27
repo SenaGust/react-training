@@ -1,23 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 interface Props{
+    label: string,
     elements: Array<string>,
-    label: string
+    value: string,
+    onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
 function CreateBeerFormCombobox(props: Props) {
-    const [items] = useState(props.elements.map((item) => {
-        return ({value: item, label: item});
-    }));
-
     return (    
         <div>
             <label>
                 {props.label}
-                <select>
-                    { items.map(item => (
-                            <option key={item.value} value={item.value}>
-                                {item.label}
+                <select onChange={props.onChange}>
+                    { props.elements.map(item => (
+                            <option key={item} value={item}>
+                                {item}
                             </option>
                         ))}
                 </select>
