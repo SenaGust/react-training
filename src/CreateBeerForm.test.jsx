@@ -19,7 +19,13 @@ describe('function CreateBeerForm', () => {
         expect(wrapper.childAt(4).type()).toEqual(CreateBeerFormTextArea);
         expect(wrapper.childAt(5).type()).toEqual('button');
     });
-    it('testar a funcionalidade', () => {
-        
+    it(' the values on the form should be written on the console', () => {
+        console.log = jest.fn();
+        const wrapper = shallow(<CreateBeerForm />);
+
+        wrapper.find('form').simulate('submit', );
+
+        expect(console.log).toHaveBeenCalledTimes(1);
+        expect(console.log).toHaveBeenCalledWith('', '', 'Ale', false);
     });
 });

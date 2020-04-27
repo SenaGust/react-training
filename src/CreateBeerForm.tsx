@@ -6,7 +6,6 @@ import CreateBeerFormTextArea from './Form/CreateBeerFormTextArea';
 
 function CreateBeerForm() {
     const onSubmit = (event: BaseSyntheticEvent) => {
-        event.preventDefault();
         console.log(valueTextArea, valueInputText, valueComboBox, valueCheckBox);
     };
 
