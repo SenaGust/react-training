@@ -23,8 +23,10 @@ describe('function CreateBeerForm', () => {
         console.log = jest.fn();
         const wrapper = shallow(<CreateBeerForm />);
 
-        wrapper.find('form').simulate('submit', );
-
+        wrapper.find('form').simulate('submit', {
+			preventDefault: jest.fn()
+        });
+        
         expect(console.log).toHaveBeenCalledTimes(1);
         expect(console.log).toHaveBeenCalledWith('', '', 'Ale', false);
     });
