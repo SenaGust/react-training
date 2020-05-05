@@ -12,8 +12,6 @@ describe('function CreateBeerFormCombobox', () => {
 
     it('children should be properly orderly', () => {
         const wrapper = shallow(<CreateBeerFormCombobox label={labelMock} elements={elementsMock} value={valueMock} onChange={onChangeMock}/>);
-        console.log(wrapper.debug());
-
 
         expect(wrapper.type()).toEqual('div');
         expect(wrapper.children().length).toBe(1);
@@ -24,13 +22,6 @@ describe('function CreateBeerFormCombobox', () => {
         expect(labelWrapper.childAt(0).text()).toEqual(labelMock);
         
         const select = labelWrapper.childAt(1);
-        expect(select.type()).toEqual('select');
-        expect(select.children()).toHaveLength(2);
-        expect(select.childAt(0).type()).toEqual('option');
-        expect(select.childAt(0).text()).toEqual('ola');
-        expect(select.childAt(1).type()).toEqual('option');
-        expect(select.childAt(1).text()).toEqual('bem');
-
         const selectMock = (
         <select onChange={onChangeMock}>
             <option value='ola'> ola </option>

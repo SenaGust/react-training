@@ -3,30 +3,36 @@ import { shallow } from 'enzyme';
 import React from 'react';
 
 describe('function CreateBeerFormTextArea', () => {
-    const label = "ingredients";
-    const onChange = jest.fn().mockImplementation((string) => {
-        value = string;
+    const labelMock = "ingredients";
+    const onChangeMock = jest.fn().mockImplementation((string) => {
+        valueMock = string;
     });
-    let value = "";
+    let valueMock = "";
 
     it('children should be properly orderly', () => {
-        const label = "ingredients";
-        const div = shallow(<CreateBeerFormTextArea label={label} />);
+        const wrapper = shallow(<CreateBeerFormTextArea label={labelMock} value={valueMock} onChange={onChangeMock} />);
 
-        expect(div.type()).toEqual('div');
-        expect(div.childAt(0).type()).toEqual('label');
+        expect(wrapper.type()).toEqual('div');
+        expect(wrapper.childAt(0).type()).toEqual('label');
         
-        const tagLabel = div.childAt(0);
-        expect(tagLabel.props().children).toHaveLength(2);
-        expect(tagLabel.props().children[0]).toEqual(label);
-        expect(tagLabel.props().children[1].type).toEqual('textarea');
+        const labelWrapper = wrapper.childAt(0);
+        expect(labelWrapper.children()).toHaveLength(2);
+        expect(labelWrapper.childAt(0).text()).toEqual(labelMock);
+
+        const textAreaWrapper = labelWrapper.childAt(1);
+        const textAreaMock = (<textarea value={valueMock} onChange={onChangeMock} />);
+        console.log(textAreaMock);
+        console.log(textAreaWrapper.debug());
+
+        expect(textAreaWrapper.matchesElement(textAreaMock)).toBeTruthy();
+
     });
     it('should update value when I change the input', () => {
-        const wrapper = shallow(<CreateBeerFormTextArea label={label} onChange={onChange} value={value} />);
+        const wrapper = shallow(<CreateBeerFormTextArea label={labelMock} onChange={onChangeMock} value={valueMock} />);
 
         wrapper.find('textarea').simulate('change', 'ola');
 
-        expect(onChange).toBeCalledTimes(1);
-        expect(value).toEqual("ola");
+        expect(onChangeMock).toBeCalledTimes(1);
+        expect(valueMock).toEqual("ola");
     });
 });
