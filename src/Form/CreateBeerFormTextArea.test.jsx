@@ -21,8 +21,6 @@ describe('function CreateBeerFormTextArea', () => {
 
         const textAreaWrapper = labelWrapper.childAt(1);
         const textAreaMock = (<textarea value={valueMock} onChange={onChangeMock} />);
-        console.log(textAreaMock);
-        console.log(textAreaWrapper.debug());
 
         expect(textAreaWrapper.matchesElement(textAreaMock)).toBeTruthy();
 

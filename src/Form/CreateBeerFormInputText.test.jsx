@@ -11,7 +11,7 @@ describe('function CreateBeerFormInputText', () => {
 
     it('children should be properly orderly', () => {
         const wrapper = shallow(<CreateBeerFormInputText label={labelMock} onChange={onChangeMock} value={valueMock} />);
-        console.log(wrapper.debug())
+
         expect(wrapper.type()).toBe('div');
         expect(wrapper.children()).toHaveLength(1);
 

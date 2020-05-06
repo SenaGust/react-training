@@ -1,4 +1,5 @@
 import React from 'react';
+import {Field} from 'formik';
 
 interface Props{
     label: string,
@@ -11,7 +12,7 @@ function FormikInputText(props: Props) {
         <div>
             <label>
                 {props.label}
-                <input type="text" value={props.value} onChange={props.onChange} />
+                <Field type="text" component="textarea" value={props.value} onChange={props.onChange} />
             </label>
         </div>
     );

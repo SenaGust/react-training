@@ -1,4 +1,5 @@
 import React from 'react';
+import {Field} from 'formik';
 
 interface Props{
     label: string,
@@ -6,15 +7,15 @@ interface Props{
     onChange: (event: React.MouseEvent<HTMLInputElement>) => void
 }
 
-function FormikCheckbox(props: Props) {
+function formikCheckbox(props: Props) {
     return (
         <div>
             <label>
-                <input onClick={props.onChange} checked={props.value} type="checkbox"/>
+                <Field onClick={props.onChange} checked={props.value} type="checkbox"/>
                 {props.label}     
             </label>
         </div>
     );
 }
 
-export default FormikCheckbox;
+export default formikCheckbox;

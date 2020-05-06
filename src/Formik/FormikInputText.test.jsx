@@ -1,32 +1,36 @@
-import CreateBeerFormInputText from './FormikInputText';
+import FormikInputText from './FormikInputText';
 import { shallow } from 'enzyme';
 import React from 'react';
+import { Field } from 'formik';
 
-describe('function CreateBeerFormInputText', () => {
-    const labelParameter = "Beer name:";
-    const onChange = jest.fn().mockImplementation((string) => {
-        value = string;
+describe('function FormikInputText', () => {
+    const labelMock = "Beer name:";
+    const onChangeMock = jest.fn().mockImplementation((string) => {
+        valueMock = string;
     });
-    let value = "";
+    let valueMock = "";
 
     it('children should be properly orderly', () => {
-        const div = shallow(<CreateBeerFormInputText label={labelParameter} onChange={onChange} value={value} />);
+        const wrapper = shallow(<FormikInputText label={labelMock} onChange={onChangeMock} value={valueMock} />);
 
-        expect(div.type()).toEqual('div');
+        expect(wrapper.type()).toBe('div');
+        expect(wrapper.children()).toHaveLength(1);
 
-        const label = div.childAt(0);
-        expect(label.props().children).toHaveLength(2);
-        expect(label.type()).toEqual('label');
+        const labelWrapper = wrapper.childAt(0);
+        expect(labelWrapper.type()).toBe('label');
+        expect(labelWrapper.childAt(0).text()).toBe(labelMock)
+        expect(labelWrapper.children()).toHaveLength(2)
 
-        expect(label.props().children[0]).toEqual(labelParameter);
-        expect(label.props().children[1].type).toEqual('input');
+        const inputWrapper = labelWrapper.childAt(1);
+        const inputMock = (<Field type="text" value={valueMock} onChange={onChangeMock} />);
+        expect(inputWrapper.matchesElement(inputMock)).toBeTruthy();
     });
     it('should update value when I change the input', () => {
-        const wrapper = shallow(<CreateBeerFormInputText label={labelParameter} onChange={onChange} value={value} />);
+        const wrapper = shallow(<FormikInputText label={labelMock} onChange={onChangeMock} value={valueMock} />);
 
-        wrapper.find('input').simulate('change', 'ola');
+        wrapper.find('Field').simulate('change', 'ola');
 
-        expect(onChange).toBeCalledTimes(1);
-        expect(value).toEqual("ola");
-    });
+        expect(onChangeMock).toBeCalledTimes(1);
+        expect(valueMock).toEqual("ola");
+    }); 
 });

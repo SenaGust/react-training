@@ -1,4 +1,5 @@
 import React from 'react';
+import {Field} from 'formik';
 
 interface Props{
     label: string,
@@ -7,21 +8,21 @@ interface Props{
     onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
-function FormikCombobox(props: Props) {
+function formikCombobox(props: Props) {
     return (    
         <div>
             <label>
                 {props.label}
-                <select onChange={props.onChange}>
+                <Field type="select" onChange={props.onChange}>
                     { props.elements.map(item => (
                             <option key={item} value={item}>
                                 {item}
                             </option>
                         ))}
-                </select>
+                </Field>
             </label>
         </div>
     );
 }
 
-export default FormikCombobox;
+export default formikCombobox;

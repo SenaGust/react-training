@@ -1,36 +1,41 @@
-import CreateBeerFormCombobox from './FormikCombobox';
+import FormikCombobox from './FormikCombobox';
 import { shallow } from 'enzyme';
 import React from 'react';
+import {Field} from 'formik';
 
-describe('function FormikCombobox', () => {
-    const label = "Beer type:";
-    const elements = ['ola', 'bem'];
-    let value = elements[0];
-    const onChange = jest.fn().mockImplementation((string) => {
-        value = string;
+describe('function formikCombobox', () => {
+    const labelMock = "Beer type:";
+    const elementsMock = ['ola', 'bem'];
+    let valueMock = elementsMock[0];
+    const onChangeMock = jest.fn().mockImplementation((string) => {
+        valueMock = string;
     });
 
     it('children should be properly orderly', () => {
-        const wrapper = shallow(<CreateBeerFormCombobox label={label} elements={elements} value={value} onChange={onChange}/>);
+        const wrapper = shallow(<FormikCombobox label={labelMock} elements={elementsMock} value={valueMock} onChange={onChangeMock}/>);
 
         expect(wrapper.type()).toEqual('div');
-        expect(wrapper.childAt(0).children().length).toBe(2);
-        expect(wrapper.childAt(0).type()).toEqual('label');
-        expect(wrapper.childAt(0).props().children[0]).toEqual(label);
+        expect(wrapper.children().length).toBe(1);
         
-        const select = wrapper.childAt(0).props().children[1];
-        expect(select.type).toEqual('select');
-        expect(select.props.children).toHaveLength(2);
-        expect(select.props.children[0].type).toEqual('option');
-        expect(select.props.children[0].key).toEqual('ola');
-        expect(select.props.children[1].type).toEqual('option');
-        expect(select.props.children[1].key).toEqual('bem');
+        const labelWrapper = wrapper.childAt(0);
+        expect(labelWrapper.type()).toEqual('label');
+        expect(labelWrapper.children().length).toBe(2);
+        expect(labelWrapper.childAt(0).text()).toEqual(labelMock);
+        
+        const select = labelWrapper.childAt(1);
+        const selectMock = (
+        <Field type="select" onChange={onChangeMock}>
+            <option value='ola'> ola </option>
+            <option value='bem'> bem </option>
+        </Field>);
+        
+        expect(select.matchesElement(selectMock)).toBeTruthy();
     });
     it('should update the value when I choose other option in select', () => {
-        const wrapper = shallow(<CreateBeerFormCombobox label={label} elements={elements} value={value} onChange={onChange}/>);
+        const wrapper = shallow(<FormikCombobox label={labelMock} elements={elementsMock} value={valueMock} onChange={onChangeMock}/>);
 
-        wrapper.find(`select`).simulate('change',  "bem");
+        wrapper.find('Field').simulate('change',  "bem");
 
-        expect(value).toEqual('bem');
+        expect(valueMock).toEqual('bem');
     });
 });

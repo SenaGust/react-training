@@ -1,8 +1,9 @@
-import CreateBeerFormCheckbox from './FormikCheckbox';
+import FormikCheckbox from './FormikCheckbox';
 import { shallow } from 'enzyme';
 import React from 'react';
+import {Field} from 'formik'
 
-describe('function CreateBeerFormCheckbox', () => {
+describe('function FormikCheckbox', () => {
     const label = "has corn";
     const onChange = jest.fn().mockImplementation(() => {
         value = !value;
@@ -10,18 +11,22 @@ describe('function CreateBeerFormCheckbox', () => {
     let value = true;
 
     it('children should be properly orderly', () => {
-        const wrapper = shallow(<CreateBeerFormCheckbox label={label} value={value} onChange={onChange}/>);
+        const wrapper = shallow(<FormikCheckbox label={label} value={value} onChange={onChange}/>);
 
         expect(wrapper.type()).toEqual('div');
-        expect(wrapper.childAt(0).type()).toEqual('label');
-        expect(wrapper.childAt(0).props().children).toHaveLength(2);
-        expect(wrapper.childAt(0).props().children[1]).toEqual(label);
-        expect(wrapper.childAt(0).props().children[0].type).toEqual('input');
+        
+        const labelWrapper = wrapper.childAt(0);
+        expect(labelWrapper.type()).toEqual('label');
+        expect(labelWrapper.children()).toHaveLength(2);
+        expect(labelWrapper.childAt(1).text()).toBe(label);
+
+        const inputMock = (<Field onClick={onChange} checked={true} type="checkbox" />);
+        expect(labelWrapper.childAt(0).matchesElement(inputMock)).toBeTruthy();
     });
     it('should update the checkbox to false when I click on the checkbox', () => {
-        const wrapper = shallow(<CreateBeerFormCheckbox label={label} value={value} onChange={onChange}/>);
+        const wrapper = shallow(<FormikCheckbox label={label} value={value} onChange={onChange}/>);
 
-        wrapper.find('input').simulate('click');
+        wrapper.find('Field').simulate('click');
 
         expect(onChange).toBeCalledTimes(1);
         expect(value).toBeFalsy();
