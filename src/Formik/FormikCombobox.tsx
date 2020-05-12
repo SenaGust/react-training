@@ -13,7 +13,7 @@ function formikCombobox(props: Props) {
         <div>
             <label>
                 {props.label}
-                <Field type="select" onChange={props.onChange}>
+                <Field component="select" onChange={props.onChange}>
                     { props.elements.map(item => (
                             <option key={item} value={item}>
                                 {item}
