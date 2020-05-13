@@ -1,11 +1,10 @@
 import React from 'react';
-import {Field} from 'formik';
+import {FastField} from 'formik';
 
 interface Props{
     label: string,
     elements: Array<string>,
-    value: string,
-    onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+    name: string
 }
 
 function formikCombobox(props: Props) {
@@ -13,13 +12,13 @@ function formikCombobox(props: Props) {
         <div>
             <label>
                 {props.label}
-                <Field component="select" onChange={props.onChange}>
+                <FastField component="select" name={props.name}>
                     { props.elements.map(item => (
                             <option key={item} value={item}>
                                 {item}
                             </option>
                         ))}
-                </Field>
+                </FastField>
             </label>
         </div>
     );

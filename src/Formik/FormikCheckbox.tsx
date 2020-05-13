@@ -1,17 +1,16 @@
 import React from 'react';
-import {Field} from 'formik';
+import {FastField} from 'formik';
 
 interface Props{
     label: string,
-    value: boolean,
-    onChange: (event: React.MouseEvent<HTMLInputElement>) => void
+    name: string
 }
 
 function formikCheckbox(props: Props) {
     return (
         <div>
             <label>
-                <Field onClick={props.onChange} checked={props.value} type="checkbox"/>
+                <FastField name={props.name} type="checkbox"/>
                 {props.label}     
             </label>
         </div>

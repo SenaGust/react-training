@@ -1,10 +1,9 @@
 import React from 'react';
-import {Field} from 'formik';
+import {FastField} from 'formik';
 
 interface Props{
     label: string,
-    value: string,
-    onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+    name: string
 }
 
 function FormikTextArea(props: Props) {
@@ -12,7 +11,7 @@ function FormikTextArea(props: Props) {
         <div>
             <label> 
                 {props.label}
-                <Field type="text" value={props.value} onChange={props.onChange} />
+                <FastField type="text" component="textarea" name={props.name} />
             </label>
         </div>
     );
