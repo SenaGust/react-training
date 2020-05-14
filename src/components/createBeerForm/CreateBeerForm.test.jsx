@@ -1,10 +1,10 @@
 import CreateBeerForm from './CreateBeerForm';
 import { shallow } from 'enzyme';
 import React from 'react';
-import CreateBeerFormCombobox from './Form/CreateBeerFormCombobox';
-import CreateBeerFormCheckbox from './Form/CreateBeerFormCheckbox';
-import CreateBeerFormInputText from './Form/CreateBeerFormInputText';
-import CreateBeerFormTextArea from './Form/CreateBeerFormTextArea';
+import CreateBeerFormCombobox from '../Form/FormCombobox/CreateBeerFormCombobox';
+import CreateBeerFormCheckbox from '../Form/FormCheckbox/CreateBeerFormCheckbox';
+import CreateBeerFormInputText from '../Form/CreateBeerFormInputText';
+import CreateBeerFormTextArea from '../Form/CreateBeerFormTextArea';
 
 describe('function CreateBeerForm', () => {
     it('children should be properly orderly', () => {
