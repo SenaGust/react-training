@@ -14,7 +14,7 @@ function CreateBeerFormik() {
                 console.log('submitting', values);
             }}
         >
-        {({ handleSubmit, values }) => (
+        {({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
                 <h1>Beer form</h1>
                 <FormikInputText label="Beer name:" name="beerName"/>
