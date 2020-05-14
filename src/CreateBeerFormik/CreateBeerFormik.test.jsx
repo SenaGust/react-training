@@ -9,7 +9,7 @@ import FormikInputText from '../Formik/FormikInputText';
 import FormikTextArea from '../Formik/FormikTextArea';
 
 describe('function CreateBeerFormik', () => {
-    it('order elements', () => {
+    it('should show components properly', () => {
         let wrapper = shallow(<CreateBeerFormik />);
         const form = ({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
@@ -24,7 +24,7 @@ describe('function CreateBeerFormik', () => {
         expect(wrapper.type()).toBe(Formik);
         //expect(wrapper.childAt(0)).toBe(form);
     });
-    it('formulario funcionando', () => {
+    it('should submit values', () => {
         const values = {beerName: '', beerType: '', hasCorn: false, ingredients: ''}
         const wrapper = shallow(<CreateBeerFormik />)
         console.log = jest.fn();
