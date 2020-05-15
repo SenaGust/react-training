@@ -1,9 +1,9 @@
 import React from 'react';
 import {Formik} from 'formik';
-import FormikCombobox from '../FormikCombobox/FormikCombobox';
-import FormikCheckbox from '../FormikCheckbox/FormikCheckbox';
-import FormikInputText from '../FormikInputText/FormikInputText';
-import FormikTextArea from '../FormikTextArea/FormikTextArea';
+import FormikCombobox from '../formikCombobox/FormikCombobox';
+import FormikCheckbox from '../formikCheckbox/FormikCheckbox';
+import FormikInputText from '../formikInputText/FormikInputText';
+import FormikTextArea from '../formikTextArea/FormikTextArea';
 
 function CreateBeerFormik() {
     const beerTypes = ['Ale', 'Lager', 'Stout'];

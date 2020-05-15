@@ -4,6 +4,11 @@ import {Formik} from 'formik';
 
 import CreateBeerFormik from './CreateBeerFormik';
 
+import FormikCombobox from '../formikCombobox/FormikCombobox';
+import FormikCheckbox from '../formikCheckbox/FormikCheckbox';
+import FormikInputText from '../formikInputText/FormikInputText';
+import FormikTextArea from '../formikTextArea/FormikTextArea';
+
 describe('function CreateBeerFormik', () => {
     it('should show components properly', () => {
         let wrapper = shallow(<CreateBeerFormik />);

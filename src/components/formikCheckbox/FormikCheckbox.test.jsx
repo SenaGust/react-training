@@ -1,7 +1,7 @@
 import FormikCheckbox from './FormikCheckbox';
 import { shallow } from 'enzyme';
 import React from 'react';
-import {Field} from 'formik'
+import {FastField} from 'formik'
 
 describe('function FormikCheckbox', () => {
     const label = "has corn";
