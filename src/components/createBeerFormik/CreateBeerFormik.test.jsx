@@ -45,13 +45,13 @@ describe('function CreateBeerFormik', () => {
         expect(buttonWrapper.type()).toBe('button');        
     });
     it('should submit values', () => {
-        const values = {beerName: '', beerType: '', hasCorn: false, ingredients: ''}
-        const wrapper = shallow(<CreateBeerFormik />)
-        console.log = jest.fn();
+        const wrapper = shallow(<CreateBeerFormik />);
+        const form = wrapper.renderProp('children')(submit);
 
-        wrapper.find('Formik').simulate('submit', values);
+        form.find('form').simulate('submit');
         
-        expect(console.log).toHaveBeenCalledTimes(1);
-        expect(console.log).toHaveBeenCalledWith('submitting', values);
+
+        console.log(form.find({name: 'beerName'}).getElements());
+        expect(submit.handleSubmit).toHaveBeenCalledTimes(1);
     });
 });
