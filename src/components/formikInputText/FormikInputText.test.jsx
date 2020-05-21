@@ -1,36 +1,21 @@
 import FormikInputText from './FormikInputText';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { Field } from 'formik';
+import { FastField } from 'formik';
 
 describe('function FormikInputText', () => {
-    const labelMock = "Beer name:";
-    const onChangeMock = jest.fn().mockImplementation((string) => {
-        valueMock = string;
-    });
-    let valueMock = "";
-
     it('children should be properly orderly', () => {
-        const wrapper = shallow(<FormikInputText label={labelMock} onChange={onChangeMock} value={valueMock} />);
+        const label = "Beer name: ",
+        name = "beerName";
+        const wrapper = shallow(<FormikInputText label={label} name={name}/>);
 
-        expect(wrapper.type()).toBe('div');
-        expect(wrapper.children()).toHaveLength(1);
-
+        expect(wrapper.type()).toEqual('div');
+        
         const labelWrapper = wrapper.childAt(0);
-        expect(labelWrapper.type()).toBe('label');
-        expect(labelWrapper.childAt(0).text()).toBe(labelMock)
-        expect(labelWrapper.children()).toHaveLength(2)
-
-        const inputWrapper = labelWrapper.childAt(1);
-        const inputMock = (<Field type="text" value={valueMock} onChange={onChangeMock} />);
-        expect(inputWrapper.matchesElement(inputMock)).toBeTruthy();
+        expect(labelWrapper.type()).toEqual('label');
+        expect(labelWrapper.children()).toHaveLength(2);
+        expect(labelWrapper.childAt(0).text()).toBe(label);
+        const inputMock = (<FastField type="text" name="beerName"/>);
+        expect(labelWrapper.childAt(1).matchesElement(inputMock)).toBeTruthy();
     });
-    it('should update value when I change the input', () => {
-        const wrapper = shallow(<FormikInputText label={labelMock} onChange={onChangeMock} value={valueMock} />);
-
-        wrapper.find('Field').simulate('change', 'ola');
-
-        expect(onChangeMock).toBeCalledTimes(1);
-        expect(valueMock).toEqual("ola");
-    }); 
 });

@@ -1,17 +1,14 @@
 import FormikTextArea from './FormikTextArea';
 import { shallow } from 'enzyme';
 import React from 'react';
-import {Field} from 'formik';
+import {FastField} from 'formik';
 
 describe('function formikTextArea', () => {
-    const labelMock = "ingredients";
-    const onChangeMock = jest.fn().mockImplementation((string) => {
-        valueMock = string;
-    });
-    let valueMock = "";
+    const labelMock = "ingredients",
+    nameMock = "ingredients";
 
     it('children should be properly orderly', () => {
-        const wrapper = shallow(<FormikTextArea label={labelMock} value={valueMock} onChange={onChangeMock} />);
+        const wrapper = shallow(<FormikTextArea label={labelMock} name={nameMock} />);
 
         expect(wrapper.type()).toEqual('div');
         expect(wrapper.childAt(0).type()).toEqual('label');
@@ -23,19 +20,8 @@ describe('function formikTextArea', () => {
 
         const textAreaWrapper = labelWrapper.childAt(1);
 
-        const textAreaMock = (<Field type="text" value={""} onChange={onChangeMock} />);
-        console.log(textAreaMock);
-        console.log(textAreaWrapper.debug());
-
+        const textAreaMock = (<FastField type="text" name={nameMock} />);
         expect(textAreaWrapper.matchesElement(textAreaMock)).toBeTruthy();
 
-    });
-    it('should update value when I change the input', () => {
-        const wrapper = shallow(<FormikTextArea label={labelMock} onChange={onChangeMock} value={valueMock} />);
-
-        wrapper.find('Field').simulate('change', 'ola');
-
-        expect(onChangeMock).toBeCalledTimes(1);
-        expect(valueMock).toEqual("ola");
     });
 });

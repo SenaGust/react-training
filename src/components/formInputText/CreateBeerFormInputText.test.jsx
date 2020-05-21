@@ -24,12 +24,4 @@ describe('function CreateBeerFormInputText', () => {
         const inputMock = (<input type="text" value={""} onChange={onChangeMock} />);
         expect(inputWrapper.matchesElement(inputMock)).toBeTruthy();
     });
-    it('should update value when I change the input', () => {
-        const wrapper = shallow(<CreateBeerFormInputText label={labelMock} onChange={onChangeMock} value={valueMock} />);
-
-        wrapper.find('input').simulate('change', 'ola');
-
-        expect(onChangeMock).toBeCalledTimes(1);
-        expect(valueMock).toEqual("ola");
-    });
 });
