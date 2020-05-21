@@ -16,7 +16,8 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "sweetalert2": "^9.10.9",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "yup": "^0.29.0"
   },
   "scripts": {
     "start": "react-scripts start",
