@@ -21,16 +21,14 @@ function CreateBeerFormik() {
                 console.log('submitting', values);
             }}
         >
-        {({ handleSubmit, errors, touched }) => (
-            <form onSubmit={handleSubmit}>
+        {(FormikProps) => (
+            <form onSubmit={FormikProps.handleSubmit}>
                 <h1>Beer form</h1>
                 <FormikInputText label="Beer name:" name="beerName"/>
                 <FormikCombobox label="Beer type:" elements={beerTypes} name="beerType"/>
                 <FormikCheckbox label="Has corn" name="hasCorn"/>
                 <FormikTextArea label="Ingredients" name="ingredients"/>
-                { (errors.beerName && touched.beerName &&  errors.beerType && touched.beerType && errors.ingredients && touched.ingredients) ? 
-                (<button type="submit" disabled> Submit </button>) : 
-                (<button type="submit"> Submit </button>)}
+                <button type="submit" disabled={!(FormikProps.isValid && FormikProps.dirty)}> Submit </button>
             </form>
         )}
         </Formik>
