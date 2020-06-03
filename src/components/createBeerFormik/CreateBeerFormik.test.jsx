@@ -1,6 +1,7 @@
 import {shallow} from 'enzyme';
 import React from 'react';
 import {Formik} from 'formik';
+import * as Yup from 'yup';
 
 import CreateBeerFormik from './CreateBeerFormik';
 
@@ -10,13 +11,26 @@ import FormikInputText from '../formikInputText/FormikInputText';
 import FormikTextArea from '../formikTextArea/FormikTextArea';
 
 describe('function CreateBeerFormik', () => {
-    const submit = { handleSubmit: jest.fn()}
+    const validationSchemaMock = Yup.object().shape({
+        beerName: Yup.string().required(),
+        beerType: Yup.string().required(),
+        ingredients: Yup.string().required()
+    });
 
     it('should show components properly', () => {
+        const formikPropsMock = { 
+            values: {
+                beerName: '',
+                beerTyps: '',
+                ingredients: '',
+                hasCorn: false
+            },
+            handleSubmit: jest.fn()
+        };
         const wrapper = shallow(<CreateBeerFormik />);
         expect(wrapper.type()).toBe(Formik);
 
-        const form = wrapper.renderProp('children')(submit);
+        const form = wrapper.renderProp('children')(formikPropsMock);
         expect(form.children()).toHaveLength(6);
         
         const h1Wrapper = form.childAt(0);
@@ -25,7 +39,7 @@ describe('function CreateBeerFormik', () => {
 
         const mocksFormik ={
             inputText: (<FormikInputText label="Beer name:" name="beerName"/>),
-            comboBox: (<FormikCombobox label="Beer type:" elements={['Ale', 'Lager', 'Stout']} name="beerType"/>),
+            comboBox: (<FormikCombobox label="Beer type:" elements={['','Ale', 'Lager', 'Stout']} name="beerType"/>),
             checkBox: (<FormikCheckbox label="Has corn" name="hasCorn"/>),
             textArea: (<FormikTextArea label="Ingredients" name="ingredients"/>)
         };
@@ -46,12 +60,86 @@ describe('function CreateBeerFormik', () => {
     });
     it('should submit values', () => {
         const wrapper = shallow(<CreateBeerFormik />);
-        const form = wrapper.renderProp('children')(submit);
+        const formikPropsMock = { 
+            values: {
+                beerName: 'Corona',
+                beerTyps: 'Ale',
+                ingredients: 'Alcool',
+                hasCorn: false
+            },
+            validationSchema: validationSchemaMock,
+            handleSubmit: jest.fn()
+        };
+        const form = wrapper.renderProp('children')(formikPropsMock);
 
-        form.find('form').simulate('submit');
+        form.find('form').simulate('submit', formikPropsMock.values);
+
+        expect(formikPropsMock.handleSubmit).toHaveBeenCalledTimes(1);
+        expect(formikPropsMock.handleSubmit).toHaveBeenCalledWith(formikPropsMock.values);
+    });
+    it("button shouldn't disabled", () => {
+        const wrapper = shallow(<CreateBeerFormik />);
+        const formikPropsMock = { 
+            values: {
+                beerName: 'iuhihiu',
+                beerTyps: 'hjhjh',
+                ingredients: 'gugy',
+                hasCorn: false
+            },
+            handleSubmit: jest.fn()
+        };
+        const form = wrapper.renderProp('children')(formikPropsMock);
         
+        expect(validationSchemaMock.isValidSync(formikPropsMock.values)).toBe(true);
+        expect(form.childAt(5).props().disabled).toBeFalsy();
+    });
+    it('button should disabled when 1 fields are empty', () => {
+        const wrapper = shallow(<CreateBeerFormik />);
+        const formikPropsMock = { 
+            values: {
+                beerName: '',
+                beerTyps: '',
+                ingredients: '',
+                hasCorn: false
+            },
+            handleSubmit: jest.fn()
+        };
+        const form = wrapper.renderProp('children')(formikPropsMock);
 
-        console.log(form.find({name: 'beerName'}).getElements());
-        expect(submit.handleSubmit).toHaveBeenCalledTimes(1);
+        expect(form.childAt(5).props().disabled).toBeTruthy();
+    });
+    it("button should disabled when 2 fields are empty", () => {
+        const wrapper = shallow(<CreateBeerFormik />);
+        const formikPropsMock = { 
+            values: {
+                beerName: '',
+                beerTyps: '',
+                ingredients: 'Alcool',
+                hasCorn: false
+            },
+            validationSchema: validationSchemaMock,
+            handleSubmit: jest.fn()
+        };
+        const form = wrapper.renderProp('children')(formikPropsMock);
+
+        expect(validationSchemaMock.isValidSync(formikPropsMock.values)).toBe(false);
+        expect(form.childAt(5).props().disabled).toBeTruthy();
+    });
+    it("button should disabled when 3 fields are empty", () => {
+        const wrapper = shallow(<CreateBeerFormik />);
+        const formikPropsMock = { 
+            values: {
+                beerName: '',
+                beerTyps: '',
+                ingredients: '',
+                hasCorn: false
+            },
+            validationSchema: validationSchemaMock,
+            handleSubmit: jest.fn()
+        };
+        const form = wrapper.renderProp('children')(formikPropsMock);
+
+        expect(validationSchemaMock.isValidSync(formikPropsMock.values)).toBe(false);
+        expect(form.childAt(5).props().disabled).toBeTruthy();
     });
 });
