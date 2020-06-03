@@ -1,8 +1,8 @@
 import React, { BaseSyntheticEvent, useState } from 'react';
-import CreateBeerFormCombobox from './Form/CreateBeerFormCombobox';
-import CreateBeerFormCheckbox from './Form/CreateBeerFormCheckbox';
-import CreateBeerFormInputText from './Form/CreateBeerFormInputText';
-import CreateBeerFormTextArea from './Form/CreateBeerFormTextArea';
+import CreateBeerFormCombobox from '../formCombobox/CreateBeerFormCombobox';
+import CreateBeerFormCheckbox from '../formCheckbox/CreateBeerFormCheckbox';
+import CreateBeerFormInputText from '../formInputText/CreateBeerFormInputText';
+import CreateBeerFormTextArea from '../formTextArea/CreateBeerFormTextArea';
 
 function CreateBeerForm() {
     const onSubmit = (event: BaseSyntheticEvent) => {

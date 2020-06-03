@@ -2,19 +2,20 @@ module.exports = {
   clearMocks: true,
   roots: ['<rootDir>/src'],
   testEnvironment: 'jsdom',
-  setupFiles: ['<rootDir>/src/conf/setupTests.js'],
+  setupFiles: ['<rootDir>/src/setupTests.ts'],
 
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json'],
   testRegex: '((\\.|/*.)(test))\\.[tj]sx?$',
-
+  transform: {
+    "^.+\\.(js|jsx)$": "babel-jest",
+  },
   coverageDirectory: 'coverage',
   coverageReporters: ['cobertura', 'html', 'lcov', 'text-summary', 'text'],
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
     '!src/index.tsx',
     '!src/index.dev.ts',
-    '!src/**/*Style.ts',
-    '!src/config/**/*.ts'
+    '!src/**/*Style.ts'
   ],
   coverageThreshold: {
     global: {
@@ -24,21 +25,4 @@ module.exports = {
       statements: 100
     }
   },
-
-  testResultsProcessor: 'jest-sonar-reporter',
-  reporters: [
-    'default',
-    [
-      'jest-junit',
-      {
-        suiteName: 'jest tests',
-        outputDirectory: './coverage/',
-        outputName: 'junit.xml',
-        classNameTemplate: '{classname} - {title}',
-        titleTemplate: '{classname} - {title}',
-        ancestorSeparator: ' > ',
-        usePathForSuiteName: 'true'
-      }
-    ]
-  ]
 };
