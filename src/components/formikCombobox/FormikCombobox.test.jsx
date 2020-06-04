@@ -25,7 +25,6 @@ describe('function formikCombobox', () => {
                 return (
                 <Select
                     value={fieldProps.field.value}
-                    fullWidth
                     onChange={fieldProps.field.onChange}
                     inputProps={{
                         name: fieldProps.field.name
