@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Button} from '@material-ui/core';
 
 interface Props{
   name: string,
@@ -12,9 +13,9 @@ function DogDetailsView(props: Props) {
     <div>
       <img src={props.photo} alt="Here is a pomsky."/>
       <h1>{props.name}</h1>
-      <button onClick={props.onBark}>Bark!</button>
+      <Button onClick={props.onBark} variant="contained" color="primary">Bark!</Button>
       <p>Scolding counter: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Scold!</button>
+      <Button onClick={() => setCount(count + 1)} variant="contained" color="primary">Scold!</Button>
     </div>
   );
 }

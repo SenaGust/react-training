@@ -1,6 +1,7 @@
 import DogDetailsView from './DogDetails';
 import { shallow } from 'enzyme';
 import React from 'react';
+import {Button} from '@material-ui/core';
 
 describe('function DogDetailsView', () => {
     it('children should be properly orderly', () => {
@@ -13,9 +14,9 @@ describe('function DogDetailsView', () => {
         expect(wrapper.children().length).toBe(5);
         expect(wrapper.childAt(0).type()).toEqual('img');
         expect(wrapper.childAt(1).type()).toEqual('h1');
-        expect(wrapper.childAt(2).type()).toEqual('button');
+        expect(wrapper.childAt(2).type()).toEqual(Button);
         expect(wrapper.childAt(3).type()).toEqual('p');
-        expect(wrapper.childAt(4).type()).toEqual('button');
+        expect(wrapper.childAt(4).type()).toEqual(Button);
     });
     it('should use props correctly and button name is "Bark!" ', () => {
         const photoParameter = 'https://img.ibxk.com.br/2019/07/16/16123213283052.jpg',
@@ -35,16 +36,16 @@ describe('function DogDetailsView', () => {
         expect(img.alt).toEqual('Here is a pomsky.');
         expect(img.src).toEqual(photoParameter);
 
-        const buttonBark = wrapper.find('button').get(0).props;
-        expect(Object.keys(buttonBark).length).toBe(2);
+        const buttonBark = wrapper.find(Button).get(0).props;
+        expect(Object.keys(buttonBark).length).toBe(4);
         expect(buttonBark.children).toEqual('Bark!');
         expect(buttonBark.onClick).toEqual(methodParameter);
 
         const p = wrapper.find('p').get(0).props;
         expect(p.children).toEqual(['Scolding counter: ', 0]);
 
-        const buttonScold = wrapper.find('button').get(1).props;
-        expect(Object.keys(buttonScold).length).toBe(2);
+        const buttonScold = wrapper.find(Button).get(1).props;
+        expect(Object.keys(buttonScold).length).toBe(4);
         expect(buttonScold.children).toEqual('Scold!');
     });
     it('onBark should called when I click on button Bark', () => {
