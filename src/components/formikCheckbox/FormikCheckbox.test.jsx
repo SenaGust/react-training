@@ -2,6 +2,7 @@ import FormikCheckbox from './FormikCheckbox';
 import { shallow } from 'enzyme';
 import React from 'react';
 import {FastField} from 'formik'
+import {Checkbox} from '@material-ui/core'
 
 describe('function FormikCheckbox', () => {
     it('should be properly orderly', () => {
@@ -15,7 +16,20 @@ describe('function FormikCheckbox', () => {
         expect(labelWrapper.type()).toEqual('label');
         expect(labelWrapper.children()).toHaveLength(2);
         expect(labelWrapper.childAt(1).text()).toBe(label);
-        const inputMock = (<FastField type="checkbox" name={name} />);
+        const inputMock = (
+            <FastField name={name}>
+                {
+                    (fieldProps) => {
+                        return <Checkbox 
+                            name={fieldProps.field.name}
+                            value={fieldProps.field.value || ''}
+                            onChange={fieldProps.field.onChange}
+                            onBlur={fieldProps.field.onBlur}
+                        />
+                    }
+                }
+            </FastField>
+        );
         expect(labelWrapper.childAt(0).matchesElement(inputMock)).toBeTruthy();
     });
 });
