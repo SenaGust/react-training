@@ -1,5 +1,6 @@
 import React from 'react';
-import {FastField} from 'formik';
+import {FastField, FieldProps} from 'formik';
+import {TextField} from '@material-ui/core';
 
 interface Props{
     label: string,
@@ -9,10 +10,19 @@ interface Props{
 function FormikInputText(props: Props) {
     return (
         <div>
-            <label>
-                {props.label}
-                <FastField type="text" name={props.name}/>
-            </label>
+                <FastField name={props.name}>
+                {(fieldProps: FieldProps) => {
+                    return (
+                        <TextField 
+                        name={fieldProps.field.name} 
+                        label={props.label} 
+                        value={fieldProps.field.value}
+                        onChange={fieldProps.field.onChange}
+                        onBlur={fieldProps.field.onBlur}
+                        variant="outlined" />
+                    );
+                }}
+                </FastField>
         </div>
     );
 }
