@@ -25,6 +25,7 @@ describe('function FormikCheckbox', () => {
                             value={fieldProps.field.value || ''}
                             onChange={fieldProps.field.onChange}
                             onBlur={fieldProps.field.onBlur}
+                            color="primary"
                         />
                     }
                 }
