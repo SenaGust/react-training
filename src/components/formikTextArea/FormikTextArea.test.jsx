@@ -2,6 +2,7 @@ import FormikTextArea from './FormikTextArea';
 import { shallow } from 'enzyme';
 import React from 'react';
 import {FastField} from 'formik';
+import {TextareaAutosize} from '@material-ui/core';
 
 describe('function formikTextArea', () => {
     const labelMock = "ingredients",
@@ -20,7 +21,23 @@ describe('function formikTextArea', () => {
 
         const textAreaWrapper = labelWrapper.childAt(1);
 
-        const textAreaMock = (<FastField type="text" name={nameMock} />);
+        const textAreaMock = (
+            <FastField type="text" name={nameMock}>
+                    {
+                        (fieldProps) => {
+                            return (
+                                <TextareaAutosize 
+                                rowsMin={2}
+                                name={fieldProps.field.name}
+                                value={fieldProps.field.value}
+                                onChange={fieldProps.field.onChange}
+                                onBlur={fieldProps.field.onBlur}
+                                />
+                            );
+                        }
+                    }    
+                </FastField>
+            );
         expect(textAreaWrapper.matchesElement(textAreaMock)).toBeTruthy();
 
     });

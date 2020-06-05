@@ -1,5 +1,6 @@
 import React from 'react';
-import {FastField} from 'formik';
+import {FastField, FieldProps} from 'formik';
+import {TextareaAutosize} from '@material-ui/core'
 
 interface Props{
     label: string,
@@ -11,7 +12,21 @@ function FormikTextArea(props: Props) {
         <div>
             <label> 
                 {props.label}
-                <FastField type="text" component="textarea" name={props.name} />
+                <FastField type="text" name={props.name}>
+                    {
+                        (fieldProps: FieldProps) => {
+                            return (
+                                <TextareaAutosize
+                                rowsMin={2}
+                                name={fieldProps.field.name}
+                                value={fieldProps.field.value}
+                                onChange={fieldProps.field.onChange}
+                                onBlur={fieldProps.field.onBlur}
+                                />
+                            );
+                        }
+                    }    
+                </FastField>
             </label>
         </div>
     );
