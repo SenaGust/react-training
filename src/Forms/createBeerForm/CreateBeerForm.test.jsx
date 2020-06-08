@@ -1,10 +1,12 @@
 import CreateBeerForm from './CreateBeerForm';
 import { shallow } from 'enzyme';
 import React from 'react';
-import CreateBeerFormCombobox from '../formCombobox/CreateBeerFormCombobox';
-import CreateBeerFormCheckbox from '../formCheckbox/CreateBeerFormCheckbox';
-import CreateBeerFormInputText from '../formInputText/CreateBeerFormInputText';
-import CreateBeerFormTextArea from '../formTextArea/CreateBeerFormTextArea';
+import {Button} from '@material-ui/core';
+
+import CreateBeerFormCombobox from '../../components/formCombobox/CreateBeerFormCombobox';
+import CreateBeerFormCheckbox from '../../components/formCheckbox/CreateBeerFormCheckbox';
+import CreateBeerFormInputText from '../../components/formInputText/CreateBeerFormInputText';
+import CreateBeerFormTextArea from '../../components/formTextArea/CreateBeerFormTextArea';
 
 describe('function CreateBeerForm', () => {
     it('children should be properly orderly', () => {
@@ -17,7 +19,7 @@ describe('function CreateBeerForm', () => {
         expect(wrapper.childAt(2).type()).toEqual(CreateBeerFormCombobox);
         expect(wrapper.childAt(3).type()).toEqual(CreateBeerFormCheckbox);
         expect(wrapper.childAt(4).type()).toEqual(CreateBeerFormTextArea);
-        expect(wrapper.childAt(5).type()).toEqual('button');
+        expect(wrapper.childAt(5).type()).toEqual(Button);
     });
     it(' the values on the form should be written on the console', () => {
         console.log = jest.fn();

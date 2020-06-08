@@ -1,5 +1,6 @@
 import React from 'react';
-import {FastField} from 'formik';
+import {FastField, FieldProps} from 'formik';
+import {Select} from '@material-ui/core';
 
 interface Props{
     label: string,
@@ -12,12 +13,25 @@ function formikCombobox(props: Props) {
         <div>
             <label>
                 {props.label}
-                <FastField component="select" name={props.name}>
-                    { props.elements.map(item => (
-                            <option key={item} value={item}>
-                                {item}
-                            </option>
-                        ))}
+                <FastField name={props.name}>
+                    { (fieldProps: FieldProps) => {
+                        return (
+                        <Select
+                        style={{ width: 100 }}
+                            value={fieldProps.field.value}
+                            onChange={fieldProps.field.onChange}
+                            inputProps={{
+                                name: fieldProps.field.name
+                            }}>
+                               {
+                                   props.elements.map(item => (
+                                    <option key={item} value={item}>
+                                        {item}
+                                    </option>
+                                ))
+                               }
+                        </Select>);
+                    }}
                 </FastField>
             </label>
         </div>

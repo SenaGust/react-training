@@ -1,10 +1,11 @@
 import React from 'react';
 import {Formik} from 'formik';
 import * as yup from 'yup';
-import FormikCombobox from '../formikCombobox/FormikCombobox';
-import FormikCheckbox from '../formikCheckbox/FormikCheckbox';
-import FormikInputText from '../formikInputText/FormikInputText';
-import FormikTextArea from '../formikTextArea/FormikTextArea';
+import Button from '@material-ui/core/Button';
+import FormikCombobox from '../../components/formikCombobox/FormikCombobox';
+import FormikCheckbox from '../../components/formikCheckbox/FormikCheckbox';
+import FormikInputText from '../../components/formikInputText/FormikInputText';
+import FormikTextArea from '../../components/formikTextArea/FormikTextArea';
 
 function CreateBeerFormik() {
     const beerTypes = ['', 'Ale', 'Lager', 'Stout'];
@@ -28,7 +29,7 @@ function CreateBeerFormik() {
                 <FormikCombobox label="Beer type:" elements={beerTypes} name="beerType"/>
                 <FormikCheckbox label="Has corn" name="hasCorn"/>
                 <FormikTextArea label="Ingredients" name="ingredients"/>
-                <button type="submit" disabled={!(FormikProps.isValid && FormikProps.dirty)}> Submit </button>
+                <Button type="submit" variant="contained" color="primary" disabled={!(FormikProps.isValid && FormikProps.dirty)}> Submit </Button>
             </form>
         )}
         </Formik>

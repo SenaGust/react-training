@@ -1,8 +1,9 @@
 import React, { BaseSyntheticEvent, useState } from 'react';
-import CreateBeerFormCombobox from '../formCombobox/CreateBeerFormCombobox';
-import CreateBeerFormCheckbox from '../formCheckbox/CreateBeerFormCheckbox';
-import CreateBeerFormInputText from '../formInputText/CreateBeerFormInputText';
-import CreateBeerFormTextArea from '../formTextArea/CreateBeerFormTextArea';
+import {Button} from '@material-ui/core';
+import CreateBeerFormCombobox from '../../components/formCombobox/CreateBeerFormCombobox';
+import CreateBeerFormCheckbox from '../../components/formCheckbox/CreateBeerFormCheckbox';
+import CreateBeerFormInputText from '../../components/formInputText/CreateBeerFormInputText';
+import CreateBeerFormTextArea from '../../components/formTextArea/CreateBeerFormTextArea';
 
 function CreateBeerForm() {
     const onSubmit = (event: BaseSyntheticEvent) => {
@@ -22,7 +23,7 @@ function CreateBeerForm() {
             <CreateBeerFormCombobox label="Beer type:" elements={beerTypes} value={valueComboBox} onChange={e => onChangeComboBox(e.target.value)}/>
             <CreateBeerFormCheckbox label="Has corn" value={valueCheckBox} onChange={e => onChangeCheckBox(!valueCheckBox)}/>
             <CreateBeerFormTextArea label="Ingredients" value={valueTextArea} onChange={e => onChangeTextArea(e.target.value)} />
-            <button type="submit">Submit</button>
+            <Button type="submit" variant="contained" color="primary">Submit</Button>
         </form>
     );
 }
