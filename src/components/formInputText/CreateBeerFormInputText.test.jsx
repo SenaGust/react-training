@@ -1,6 +1,7 @@
 import CreateBeerFormInputText from './CreateBeerFormInputText';
 import { shallow } from 'enzyme';
 import React from 'react';
+import {TextField} from '@material-ui/core';
 
 describe('function CreateBeerFormInputText', () => {
     const labelMock = "Beer name:";
@@ -10,18 +11,29 @@ describe('function CreateBeerFormInputText', () => {
     let valueMock = "";
 
     it('children should be properly orderly', () => {
-        const wrapper = shallow(<CreateBeerFormInputText label={labelMock} onChange={onChangeMock} value={valueMock} />);
+        const wrapper = shallow(<CreateBeerFormInputText label={labelMock} value={valueMock} onChange={onChangeMock} />);
 
-        expect(wrapper.type()).toBe('div');
+        expect(wrapper.type()).toEqual('div');
+        expect(wrapper.childAt(0).type()).toEqual(TextField);
         expect(wrapper.children()).toHaveLength(1);
 
-        const labelWrapper = wrapper.childAt(0);
-        expect(labelWrapper.type()).toBe('label');
-        expect(labelWrapper.childAt(0).text()).toBe(labelMock)
-        expect(labelWrapper.children()).toHaveLength(2)
+        const textAreaWrapper  = wrapper.childAt(0);
+        const textAreaMock = (
+        <TextField
+        label={labelMock}
+        variant="outlined"
+        value={valueMock}
+        onChange={onChangeMock}
+        />);
 
-        const inputWrapper = labelWrapper.childAt(1);
-        const inputMock = (<input type="text" value={""} onChange={onChangeMock} />);
-        expect(inputWrapper.matchesElement(inputMock)).toBeTruthy();
+        expect(textAreaWrapper.matchesElement(textAreaMock)).toBeTruthy();
+    });
+    it('should update value when I change the input', () => {
+        const wrapper = shallow(<CreateBeerFormInputText label={labelMock} onChange={onChangeMock} value={valueMock} />);
+
+        wrapper.find(TextField).simulate('change', 'ola');
+
+        expect(onChangeMock).toBeCalledTimes(1);
+        expect(valueMock).toEqual("ola");
     });
 });

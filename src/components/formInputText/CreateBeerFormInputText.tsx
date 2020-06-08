@@ -1,4 +1,5 @@
 import React from 'react';
+import {TextField} from '@material-ui/core';
 
 interface Props{
     label: string,
@@ -9,10 +10,11 @@ interface Props{
 function CreateBeerFormInputText(props: Props) {
     return (
         <div>
-            <label>
-                {props.label}
-                <input type="text" value={props.value} onChange={props.onChange} />
-            </label>
+            <TextField 
+            label={props.label} 
+            value={props.value}
+            onChange={props.onChange}
+            variant="outlined" />
         </div>
     );
 }
