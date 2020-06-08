@@ -1,7 +1,7 @@
 import DogDetailsView from './DogDetails';
 import { shallow } from 'enzyme';
 import React from 'react';
-import {Button} from '@material-ui/core';
+import {Button, Typography} from '@material-ui/core';
 
 describe('function DogDetailsView', () => {
     it('children should be properly orderly', () => {
@@ -13,9 +13,9 @@ describe('function DogDetailsView', () => {
         expect(wrapper.type()).toEqual('div');
         expect(wrapper.children().length).toBe(5);
         expect(wrapper.childAt(0).type()).toEqual('img');
-        expect(wrapper.childAt(1).type()).toEqual('h1');
+        expect(wrapper.childAt(1).type()).toEqual(Typography);
         expect(wrapper.childAt(2).type()).toEqual(Button);
-        expect(wrapper.childAt(3).type()).toEqual('p');
+        expect(wrapper.childAt(3).type()).toEqual(Typography);
         expect(wrapper.childAt(4).type()).toEqual(Button);
     });
     it('should use props correctly and button name is "Bark!" ', () => {
@@ -29,7 +29,7 @@ describe('function DogDetailsView', () => {
             name={nameParameter} photo={photoParameter} 
             onBark={methodParameter}/>);
         
-        expect(wrapper.find('h1').get(0).props.children).toEqual(nameParameter);
+        expect(wrapper.find(Typography).at(0).text()).toEqual(nameParameter);
 
         const img = wrapper.find('img').get(0).props;
         expect(Object.keys(img).length).toBe(2);
@@ -41,7 +41,7 @@ describe('function DogDetailsView', () => {
         expect(buttonBark.children).toEqual('Bark!');
         expect(buttonBark.onClick).toEqual(methodParameter);
 
-        const p = wrapper.find('p').get(0).props;
+        const p = wrapper.find({variant: "body1"}).get(0).props;
         expect(p.children).toEqual(['Scolding counter: ', 0]);
 
         const buttonScold = wrapper.find(Button).get(1).props;
@@ -72,7 +72,7 @@ describe('function DogDetailsView', () => {
 
         wrapper.find({children: 'Scold!'}).simulate('click');
         
-        const p = wrapper.find('p').get(0).props;
-        expect(p.children).toEqual(['Scolding counter: ', 1]);
+        const p = wrapper.find(Typography).at(1);
+        expect(p.text()).toEqual('Scolding counter: 1');
     });
 });
