@@ -17,6 +17,7 @@ function formikCombobox(props: Props) {
                     { (fieldProps: FieldProps) => {
                         return (
                         <Select
+                        style={{ width: 100 }}
                             value={fieldProps.field.value}
                             onChange={fieldProps.field.onChange}
                             inputProps={{
