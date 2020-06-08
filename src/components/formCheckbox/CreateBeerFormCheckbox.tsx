@@ -1,16 +1,21 @@
 import React from 'react';
+import {Checkbox} from '@material-ui/core';
 
 interface Props{
     label: string,
     value: boolean,
-    onChange: (event: React.MouseEvent<HTMLInputElement>) => void
+    onChange: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
 function CreateBeerForm(props: Props) {
     return (
         <div>
             <label>
-                <input onClick={props.onChange} checked={props.value} type="checkbox"/>
+                <Checkbox 
+                checked={props.value}
+                onClick={props.onChange}
+                color="primary"
+                />
                 {props.label}     
             </label>
         </div>
