@@ -1,7 +1,7 @@
 import CreateBeerForm from './CreateBeerForm';
 import { shallow } from 'enzyme';
 import React from 'react';
-import {Button} from '@material-ui/core';
+import {Button, Typography} from '@material-ui/core';
 
 import CreateBeerFormCombobox from '../../components/formCombobox/CreateBeerFormCombobox';
 import CreateBeerFormCheckbox from '../../components/formCheckbox/CreateBeerFormCheckbox';
@@ -14,7 +14,7 @@ describe('function CreateBeerForm', () => {
 
         expect(wrapper.type()).toEqual('form');
         expect(wrapper.children().length).toBe(6);
-        expect(wrapper.childAt(0).type()).toEqual('h1');
+        expect(wrapper.childAt(0).type()).toEqual(Typography);
         expect(wrapper.childAt(1).type()).toEqual(CreateBeerFormInputText);
         expect(wrapper.childAt(2).type()).toEqual(CreateBeerFormCombobox);
         expect(wrapper.childAt(3).type()).toEqual(CreateBeerFormCheckbox);

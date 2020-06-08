@@ -1,5 +1,5 @@
 import React, { BaseSyntheticEvent, useState } from 'react';
-import {Button} from '@material-ui/core';
+import {Button, Typography} from '@material-ui/core';
 import CreateBeerFormCombobox from '../../components/formCombobox/CreateBeerFormCombobox';
 import CreateBeerFormCheckbox from '../../components/formCheckbox/CreateBeerFormCheckbox';
 import CreateBeerFormInputText from '../../components/formInputText/CreateBeerFormInputText';
@@ -18,7 +18,7 @@ function CreateBeerForm() {
     const [valueCheckBox, onChangeCheckBox] = useState(false);
     return (
         <form onSubmit={onSubmit}>
-            <h1>Beer form</h1>
+            <Typography variant="h1">Beer form</Typography>
             <CreateBeerFormInputText label="Beer name:" value={valueInputText} onChange={e => onChangeInputText(e.target.value)}/>
             <CreateBeerFormCombobox label="Beer type:" elements={beerTypes} value={valueComboBox} onChange={e => onChangeComboBox(e.target.value)}/>
             <CreateBeerFormCheckbox label="Has corn" value={valueCheckBox} onChange={e => onChangeCheckBox(!valueCheckBox)}/>
