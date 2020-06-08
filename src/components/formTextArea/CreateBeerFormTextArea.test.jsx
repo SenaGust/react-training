@@ -28,7 +28,6 @@ describe('function CreateBeerFormTextArea', () => {
             />);
 
         expect(textAreaWrapper.matchesElement(textAreaMock)).toBeTruthy();
-
     });
     it('should update value when I change the input', () => {
         const wrapper = shallow(<CreateBeerFormTextArea label={labelMock} onChange={onChangeMock} value={valueMock} />);
