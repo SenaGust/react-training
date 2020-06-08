@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import CreateBeerFormik from './components/createBeerFormik/CreateBeerFormik'
+import CreateBeerFormik from './Forms/createBeerFormik/CreateBeerFormik'
 
 function App() {
   return (

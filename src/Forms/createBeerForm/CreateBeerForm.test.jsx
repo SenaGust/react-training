@@ -3,10 +3,10 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import {Button} from '@material-ui/core';
 
-import CreateBeerFormCombobox from '../formCombobox/CreateBeerFormCombobox';
-import CreateBeerFormCheckbox from '../formCheckbox/CreateBeerFormCheckbox';
-import CreateBeerFormInputText from '../formInputText/CreateBeerFormInputText';
-import CreateBeerFormTextArea from '../formTextArea/CreateBeerFormTextArea';
+import CreateBeerFormCombobox from '../../components/formCombobox/CreateBeerFormCombobox';
+import CreateBeerFormCheckbox from '../../components/formCheckbox/CreateBeerFormCheckbox';
+import CreateBeerFormInputText from '../../components/formInputText/CreateBeerFormInputText';
+import CreateBeerFormTextArea from '../../components/formTextArea/CreateBeerFormTextArea';
 
 describe('function CreateBeerForm', () => {
     it('children should be properly orderly', () => {

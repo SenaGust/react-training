@@ -6,10 +6,10 @@ import {Button} from '@material-ui/core';
 
 import CreateBeerFormik from './CreateBeerFormik';
 
-import FormikCombobox from '../formikCombobox/FormikCombobox';
-import FormikCheckbox from '../formikCheckbox/FormikCheckbox';
-import FormikInputText from '../formikInputText/FormikInputText';
-import FormikTextArea from '../formikTextArea/FormikTextArea';
+import FormikCombobox from '../../components/formikCombobox/FormikCombobox';
+import FormikCheckbox from '../../components/formikCheckbox/FormikCheckbox';
+import FormikInputText from '../../components/formikInputText/FormikInputText';
+import FormikTextArea from '../../components/formikTextArea/FormikTextArea';
 
 describe('function CreateBeerFormik', () => {
     const validationSchemaMock = Yup.object().shape({
@@ -92,8 +92,8 @@ describe('function CreateBeerFormik', () => {
         };
         const form = wrapper.renderProp('children')(formikPropsMock);
         
-        //expect(form.childAt(5).props().disabled).toBeFalsy();
-        //expect(validationSchemaMock.isValidSync(formikPropsMock.values)).toBe(true);
+        expect(form.childAt(5).props().disabled).toBeTruthy();
+        expect(validationSchemaMock.isValidSync(formikPropsMock.values)).toBe(false);
     });
     it('button should disabled when 1 fields are empty', () => {
         const wrapper = shallow(<CreateBeerFormik />);
